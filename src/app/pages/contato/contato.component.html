@@ -5,7 +5,7 @@
       <p>Alguma dúvida, crítica ou sugestão? <br>Entre em contato!</p>
     </div>
     <figure>
-      <img src="assets/imagens/contato.png" alt="">
+      <img src="assets/imagens/contato.png" alt="Imagem de contato">
     </figure>
   </section>
 
@@ -14,11 +14,13 @@
       <div class="campo-form">
         <label for="nome">Nome</label>
         <input
+          [attr.aria-invalid]="contatoForm.get('nome')?.invalid"
           type="text"
           id="nome"
           placeholder="Digite seu nome completo"
           formControlName="nome"
-          required>
+          required
+          aria-describedby="nome-erro">
         @if (contatoForm.get('nome')?.errors?.['required']) {
           <span
             id="nome-erro"
@@ -30,11 +32,14 @@
       <div class="campo-form">
         <label for="email">E-mail</label>
         <input
+        aria-label="E-mail"
+          [attr.aria-invalid]="contatoForm.get('email')?.invalid"
           type="email"
           id="email"
           placeholder="Digite seu email"
           formControlName="email"
-          required>
+          required
+          aria-describedby="email-erro-email email-erro-required">
           @if (contatoForm.get('email')?.errors?.['email']) {
             <span
               id="email-erro-email"
@@ -114,6 +119,8 @@
       <div class="campo-form">
         <label for="mensagem">Mensagem</label>
         <textarea
+        aria-label="Mensagem"
+          aria-describedby="mensagem-erro"
           id="mensagem"
           placeholder="Digite sua mensagem"
           formControlName="mensagem"
